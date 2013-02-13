@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+<head>
+    <title>eBay | Open Source</title>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="ebayopensource.github.com : " />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>eBay Open Source</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ebayopensource">View on GitHub</a>
-
-          <h1 id="project_title">eBay Open Source</h1>
-          <h2 id="project_tagline"></h2>
-
-        </header>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/app.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <a href="javascript:;" class="logo">eBay Inc. Open Source</a>
+                    <h2>Open Source</h2>
+                </div>
+                <div class="span6">
+                        <div id="members"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="repos"><!-- repos details here --></div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to eBay's Open Source page on Github</h3>
-
-        <p>More content coming soon..</p>
-
-      </section>
+    <script id="repo-item" type="text/mu-tmpl">
+    {{#repos}}
+    <div class="row repo-item">
+        <div class="span6">
+            <h3><a href="{{url}}">{{name}}</a></h3>
+            <div class="desc">{{description}}</div>
+        </div>
+        <div class="span6 numbers">
+            <div class="forks num-box">{{forks}} <span class="txt">Forks</span></div>
+            <div class="watchers num-box">{{watchers}} <span class="txt">Watchers</span></div>
+        </div>
     </div>
+    {{/repos}}
+    </script>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>See <a href="http://github.com/ebayopensource">ebayopensource on Github</a></p>
-      </footer>
-    </div>
-  </body>
+    <script type="text/javascript" src="javascripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/mustache.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+</body>
 </html>
