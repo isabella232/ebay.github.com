@@ -22,6 +22,7 @@
 
     var github_api_url = 'https://api.github.com/';
     var item_tmpl = $('#repo-item').html();
+    var total_repos_div = $('#total-repos');
     var repos_div = $('#repos');
     var forked_from_tmpl = $('#forked-from').html();
     var forked_html = '';
@@ -48,6 +49,12 @@
 
         processRepoResponse: function(resp) {
             var repo = resp;
+
+            repo.created_at = (new Date(repo.created_at)).toString('MMMM dd, yyyy h:mm:ss a');
+            repo.pushed_at = (new Date(repo.pushed_at)).toString('MMMM dd, yyyy h:mm:ss a');
+            repo.updated_at = (new Date(repo.updated_at)).toString('MMMM dd, yyyy h:mm:ss a');
+
+            // If it's a fork, show where it was forked from.
             if (repo.fork == true) {
                 forked_html = Mustache.to_html(forked_from_tmpl, {
                     forked_parent_org: repo.parent.owner.login, 
@@ -68,6 +75,7 @@
 
             repos.push(repo);
 
+            total_repos_div.html(repos.length);
             repos_div.html(Mustache.to_html(item_tmpl, {repos: repos}));
         },
 

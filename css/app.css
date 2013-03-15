@@ -1,6 +1,6 @@
 body {
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 70px;
+  margin-left: 70px;
 }
 
 h3 {
@@ -73,12 +73,7 @@ h3 {
     color: #003366;
 }
 
-.repo-item .watchers {
-    background-color: #E6F8DD;
-    color: #003366;
-}
-
 .repo-item .stars {
-    background-color: #e5f2fa;
+    background-color: #E6F8DD;
     color: #003366;
 }
