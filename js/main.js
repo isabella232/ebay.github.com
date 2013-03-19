@@ -148,7 +148,7 @@
                 if (repo == '*') {
                     $.ajax({
                         url: github_api_url + 'orgs/' + org + '/repos',
-                        dataType: 'jsonp',
+                        dataType: 'json',
                         cache: true,
                         success: function(response) {
                             my.processRepoArrayResponse(response.data, updateAfter);
@@ -175,6 +175,7 @@
         }
     };
 
+    document.domain = "api.github.com";
     my.init();
 
     // When the user enters a search query, run the search function.
