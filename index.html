@@ -71,7 +71,9 @@ content</a>
 <div style="display: block;"><p style="font-weight: bold; text-align: center;">Open Source<br/>Projects</p></div>
 </td>
 <td class="gh-td-s">
-<form action="http://www.ebay.com/sch/i.html?_from=R40" method="get" id="gh-f" class="lftd l-shad">
+
+<!-- Begin search form. -->
+<form action="javascript:" method="get" id="gh-f" class="lftd l-shad">
 <input name="_odkw" value="" type="hidden">
 <input name="_osacat" value="0" type="hidden">
 <input name="_from" value="R40" type="hidden">
@@ -81,9 +83,8 @@ content</a>
 <tr>
 <td class="gh-td-s">
 <div id="gh-ac-box">
-<div class="afi" id="gh-ac-box2"><label class="gh-hdn g-hdn" for=
-"gh-ac">Enter your search keyword</label><input aria-haspopup="true" aria-autocomplete="list" role="textbox" autocomplete="off"
-name="_nkw" id="gh-ac" placeholder="I'm looking for project..." title="Enter your search keyword" maxlength="300" size="50" class="gh-tb ui-autocomplete-input" value="" type="text"></div>
+<div id="gh-ac-box2" style="padding-top: 7px"><label class="gh-hdn g-hdn" for=
+"gh-ac">Enter your search keyword</label><input id="search-query" type="text" value="" autocomplete="off" placeholder="I'm looking for project..." title="Enter your search keyword" maxlength="300" size="50"></div>
 </div>
 </td>
 <td class="gh-td"><input value="Search" id="gh-btn" class="btn btn-prim" type="submit"></td>
@@ -126,7 +127,7 @@ name="_nkw" id="gh-ac" placeholder="I'm looking for project..." title="Enter you
 
 <div class="modules">
   <div class="sbx-c ts-pd">
-    <div class="sbx-b">
+    <div class="sbx-b" style="padding-bottom: 0px; margin-bottom: 0px;">
       <ul class="ts-u">
         <li>Contact info: <a href="mailto:github@ebaysf.com">github@ebaysf.com</a></li>
       </ul>
@@ -137,10 +138,10 @@ name="_nkw" id="gh-ac" placeholder="I'm looking for project..." title="Enter you
     <p style="font-weight: bold; font-size: 13px; color: #000000; margin-bottom: 0px;">Featured Projects</p>
     <div class="sbx-b">
       <ul class="ts-u">
-        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/raptorjs">RaptorJS</a><span class="cnt">&nbsp;</span></h4>
-        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="http://github.com/ql-io/ql.io">ql.io</a><span class="cnt">&nbsp;</span></h4>
-        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/ql-io/netmorphic">Netmorphic</a><span class="cnt">&nbsp;</span></h4>
-        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/eBay/geosense">GeoSense</a><span class="cnt">&nbsp;</span></h4>
+        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/raptorjs">RaptorJS</a><span class="cnt">&nbsp;</span></h4></div>
+        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="http://github.com/ql-io/ql.io">ql.io</a><span class="cnt">&nbsp;</span></h4></div>
+        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/ql-io/netmorphic">Netmorphic</a><span class="cnt">&nbsp;</span></h4></div>
+        <div class="cat-t"><h4 class="vip" style="font-size: 12px"><a href="https://github.com/eBay/geosense">GeoSense</a><span class="cnt">&nbsp;</span></h4></div>
       </ul>
       <br/>
     </div>
@@ -277,20 +278,24 @@ id="surveylink" href="javascript:void(0)"></a></span></span></div>
 
 <ul class="sel">
 <li class="dropdown" aria-haspopup="true"><a href="#" class=
-"btn btn-s btn-ter dropdown-toggle" data-toggle="dropdown">Most Commits</a></li>
+"btn btn-s btn-ter dropdown-toggle" data-toggle="dropdown">Most Active</a></li>
 </ul>
 <ul style="visibility: hidden;" class="lyr txtRt dropdown-menu dropdown-menu-sm" id="menu3" role="menu">
+<!--
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=1" value="1">Activity: number of commits</a></li>
+-->
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=2" value="2">Activity: number of forks</a></li>
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=3" value="3">Activity: number of stars</a></li>
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=5" value="5">Time: creation date</a></li>
+<!--
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=6" value="6">Tech: programming language</a></li>
 <li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=7" value="7">Legal: software license</a></li>
+-->
 </ul>
 </div>
 </div>
 
-<div class="clt"><span class="rcnt"><div id="total_repos"><!-- total --></div></span> <span class="active">repositories</span></div>
+<div class="clt"><span class="rcnt"><div id="total-repos"><!-- total --></div></span> <span class="active">repositories</span></div>
 
 <div class="clr"></div>
 </div>
@@ -317,21 +322,25 @@ id="surveylink" href="javascript:void(0)"></a></span></span></div>
           </div>
           <div class="dyn dynS">
             {{forked_html}}
-            <div class="s1">Organization:&nbsp;<span class="v"><a href="http://github.com/ebay">eBay Marketplaces</a></span>
+            <div class="s1">Origin:&nbsp;<span class="v"><a href="http://www.ebay.com">eBay Marketplaces</a></span>
             </div>
             <div class="s1">Created:&nbsp;<span class="v">{{created_at}}</span>
             </div>
+            <!--
             <div class="s1">Programming&nbsp;Language(s):&nbsp;<span class="v">{{programming_langs}}</span>
             </div>
+            -->
             <span>
               <span id="forks" class="forks num-box">
                 Forks:&nbsp;<span class="v">{{forks}}</span>,
               </span>
+              <!--
               <span id="pull-reqs" class="pull-reqs num-box">
                 Pull Requests:&nbsp;<span class="v">{{pulls_count}}</span>,
               </span>
+              -->
               <span id="stars" class="stars num-box">
-                stars:&nbsp;<span class="v">{{watchers}}</span>,
+                stars:&nbsp;<span class="v">{{watchers}}</span>
               </span>
             </span>
           </div>
@@ -352,32 +361,24 @@ id="surveylink" href="javascript:void(0)"></a></span></span></div>
 </script>
 
 <script id="forked-from" type="text/mu-tmpl">
-  <div class="s1">Forked&nbsp;from&nbsp;<span class="v">{{fork_parent_org}} / {{fork_parent_name}}</span>
+  <div class="s1">Forked&nbsp;from&nbsp;<span class="v"><a href="{{fork_parent_org_url}}">{{fork_parent_org}}</a> / <a href="{{fork_parent_url}}">{{fork_parent_name}}</a></span>
   </div>
 </script>
 
 <!-- End of search results. -->
 </div>
 </div>
+
+
 <div style="display:none">
 <textarea id="mulImgCache">
 </textarea></div>
-<div class="topRatedContent g-hdn">
-<div style=
-"padding:0 10px 10px;min-width:225px;max-width:250px;font-size:11px;line-height:1.3;">
-<b style="color:#333333">Top Rated Plus</b><br>
-<ul style="color:#666666;margin: 3px 0;">
-<li>Sellers with highest buyer ratings</li>
-<li>Returns, money back</li>
-<li>Ships in a business day with tracking</li>
-</ul>
-<a href="http://pages.ebay.com/topratedplus/index.html">Learn
-More</a></div>
-</div>
-</div>
+
 <hr>
+<!-- End of search results panel. -->
 
 <!-- Begin items per page drop-down. -->
+<!--
 <div id="cbBtmElem" class="ipp cb">
 <div class="cbl dropdownmenu" an="Dash.IPP.hover"><span class=
 "dropdown-lbl">Items per page:&nbsp;</span>
@@ -388,55 +389,40 @@ class="btn btn-s btn-ter dropdown-toggle" data-toggle=
 </ul>
 <ul class="lyr txtRt dropdown-menu dropdown-menu-sm" id="menu3"
 role="menu">
-<li role="menuitem"><a href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_ipg=50&amp;rt=nc">
-50</a></li>
-<li role="menuitem"><a href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_ipg=100&amp;rt=nc">
-100</a></li>
-<li role="menuitem"><a href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_ipg=200&amp;rt=nc">
-200</a></li>
+<li role="menuitem"><a href="javascript:">50</a></li>
+<li role="menuitem"><a href="javascript:">100</a></li>
+<li role="menuitem"><a href="javascript:">200</a></li>
 </ul>
 </div>
 </div>
+-->
 <!-- End items per page drop-down. -->
 
 <!-- Begin pagination. -->
+<!--
 <table class="pagn pagn-m">
 <tbody>
 <tr>
 <td class="pagn-prev"><a title="Previous page of results"
 aria-disabled="true" class="gspr prev-d" href=
 "javascript:;"></a></td>
-<td class="pages"><a class="pg curr" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;rt=nc"
-onclick="return false;">1</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=2&amp;_skc=25&amp;rt=nc">
-2</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=3&amp;_skc=50&amp;rt=nc">
-3</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=4&amp;_skc=75&amp;rt=nc">
-4</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=5&amp;_skc=100&amp;rt=nc">
-5</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=6&amp;_skc=125&amp;rt=nc">
-6</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=7&amp;_skc=150&amp;rt=nc">
-7</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=8&amp;_skc=175&amp;rt=nc">
-8</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=9&amp;_skc=200&amp;rt=nc">
-9</a> <a class="pg" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=10&amp;_skc=225&amp;rt=nc">
+<td class="pages"><a class="pg curr" href="" onclick="return false;">
+1</a> <a class="pg" href="">
+2</a> <a class="pg" href="">
+3</a> <a class="pg" href="">
+4</a> <a class="pg" href="">
+5</a> <a class="pg" href="">
+6</a> <a class="pg" href="">
+7</a> <a class="pg" href="">
+8</a> <a class="pg" href="">
+9</a> <a class="pg" href="">
 10</a></td>
-<td class="pagn-next"><a title="Next page of results" class=
-"gspr next" href=
-"http://www.ebay.com/sch/i.html?_from=R40&amp;_sacat=0&amp;_nkw=star+wars+action+figure+vintage&amp;_pgn=2&amp;_skc=25&amp;rt=nc">
+<td class="pagn-next"><a title="Next page of results" class="gspr next" href="">
 </a></td>
 </tr>
 </tbody>
 </table>
+-->
 <!-- End pagination. -->
 </div>
 </div>
@@ -506,11 +492,7 @@ us what you think</a>
 </td>
 </tr>
 <tr valign="top">
-<td class="gf-legal">Copyright &#169; 1995-2013 eBay Inc. All Rights Reserved. <a class="thrd" href=
-"http://pages.ebay.com/help/policies/user-agreement.html?rt=nc">User
-Agreement</a> and <a class="thrd" href=
-"http://pages.ebay.com/help/policies/privacy-policy.html?rt=nc">Privacy
-Policy</a>.</td>
+<td class="gf-legal">Copyright &#169; 1995-2013 eBay Software Foundation. All Rights Reserved.</td>
 </tr>
 </tbody>
 </table>
@@ -546,7 +528,7 @@ type="text/javascript">
                         $("body").trigger("RTM_INIT",{'init':0});
                 })();
 </script><script type="text/javascript">
-(function(){new (raptor.require('raptor.tracking.core.Tracker'))({"psi":"Ah69nAAE*","rover":{"clk":"/roverclk/0/0/9","imp":"/roverimp/0/0/9","uri":"http://rover.ebay.com"},"pid":"p2045573"});raptor.require('raptor.tracking.idmap.IdMap').roverService("http://rover.ebay.com/idmap/0?footer"); if (typeof GH != "undefined" && GH) { GH_config = { siteId:"0", algo:"1362020527", catId:"0", sin:1,pageId:2045573,userMsgConfig:['18','500'],notifCfg:{"d":0,"n":0},ct:0};GH.init();}
+(
                                 var SB = raptor.require("dash.autofill.SearchboxOverride");
                                 new SB({separator: "in", currentCategory: ""});
                                 raptor.require("search.layers.SaveSearchLink").bindToLink({linkSelector:"saveSearchLinkDash",url:"http://www.ebay.com/sch/favsearch/?_pppn=r1&rt=nc&mode=1&returnURL=http%3A%2F%2Fwww.ebay.com%2Fsch%2Fi.html%3F_from%3DR40%26_sacat%3D0%26_nkw%3Doss&saveon=2",saveOn:"",saveTitle:'Save this search',redirectURL:'https://signin.ebay.com/ws/eBayISAPI.dll?SignIn','isDashVersion':true, myEbayUrl:'http://my.ebay.com/ws/eBayISAPI.dll?MyeBay&CurrentPage=MyeBayFavoriteSearches'});
