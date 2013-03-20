@@ -96,6 +96,9 @@
             var month_names = new Array("January", "February", "March", "April",
                 "May", "June", "July", "August", "September", "October",
                 "November", "December");
+            if (navigator.appName.indexOf("Microsoft") > -1) {
+                date_string = date_string.replace(/[-]/g, '/');
+            }
             var d = new Date(date_string);
             return month_names[d.getMonth()] + ' ' + d.getDate() + ', ' +
                 d.getFullYear() + ' ' + d.toLocaleTimeString();
