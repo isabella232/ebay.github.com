@@ -153,6 +153,9 @@
                         success: function(response) {
                             my.processRepoArrayResponse(response.data, updateAfter);
                         },
+                        failure: function () {
+                            my.repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                        },
                         context: my
                     });
                 } else {
