@@ -17,7 +17,7 @@
     // hosted in another org on github, where this list contains each project's
     // github org and repo names.
     var ebay_contributed_projects = { projects: [
-        /*{ org: '', repo: '', ebayOrg: 'eBay Marketplaces' }*/
+        { org: 'timotheus', repo: 'ebaysdk-python', ebayOrg: 'eBay Marketplaces' }
     ]};
 
     var github_api_url = 'https://api.github.com/';
@@ -174,7 +174,11 @@
                         dataType: 'jsonp',
                         cache: true,
                         success: function(response) {
-                            my.processRepoResponse(response, updateAfter);
+                            if (response.data.message != undefined) {
+                              repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                            } else {
+                                my.processRepoResponse(response.data, updateAfter);
+                            }
                         },
                         context: my
                     });
@@ -183,8 +187,8 @@
         },
 
         init: function() {
+            this.loadRepos.call(this, ebay_contributed_projects, false);
             this.loadRepos.call(this, ebay_org_projects, true);
-            //this.loadRepos(this, ebay_contributed_projects, true);
         }
     };
 
