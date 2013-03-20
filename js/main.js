@@ -97,7 +97,10 @@
                 "May", "June", "July", "August", "September", "October",
                 "November", "December");
             if (navigator.appName.indexOf("Microsoft") > -1) {
+                // Modify the date string so it parses properly on IE.
                 date_string = date_string.replace(/[-]/g, '/');
+                date_string = date_string.replace(/([0-9])T([0-9])/g, '$1 $2');
+                date_string = date_string.replace(/Z$/, '');
             }
             var d = new Date(date_string);
             return month_names[d.getMonth()] + ' ' + d.getDate() + ', ' +
