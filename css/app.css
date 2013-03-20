@@ -77,3 +77,45 @@ h3 {
     background-color: #E6F8DD;
     color: #003366;
 }
+
+.styled-select {
+   width: 240px;
+   height: 34px;
+   overflow: hidden;
+   border: 1px solid #ccc;
+}
+
+.styled-select select {
+   padding: 0px;
+   padding-top: 3px;
+   padding-left: 5px;
+   color: #1F75A7;
+   font-family: Helvetica neue;
+   font-size: 12px;
+   font-weight: 500px;
+   height: 26px;
+   width: 185px;
+   min-height: 26px;
+   max-height: 26px;
+   border: 1px solid #AAAAAA;
+   box-shadow: 0px 2px 2px #CCC;
+   vertical-align: baseline;
+   border-radius: 0;
+   text-align: center;
+   -webkit-appearance: none;
+}
+
+.styled-select select option {
+   align: right;
+   text-align: right;
+   margin-right: 5px;
+}
+
+div.styled-select:active, 
+div.styled-select:focus, 
+div.styled-select:hover {  
+   outline: 0px none;
+   outline-style: none;
+   -moz-outline-style: none;
+}
+

@@ -34,26 +34,34 @@
 
     var my = {
 
-        /*
-        getRepoMembers: function(owner, name) {
-            $.ajax({
-                url: github_api_url + 'repos/' + owner + '/' + name
-                     + '/collaborators',
-                dataType: 'jsonp',
-                success: function(resp) {
-                    var members = resp.data;
-                    if (members) {
-                        members_div.html(members.length + " Members");
-                    }
-                },
-                context: my
-            });
-        },
-        */
-
         updateResults: function() {
             total_repos_div.html(repos_results.length);
             repos_div.html(Mustache.to_html(item_tmpl, {repos: repos_results}));
+        },
+
+        dynamicSort: function(property) {
+            var sortOrder = 1;
+            if (property[0] === "-") {
+                sortOrder = -1;
+                property = property.substr(1, property.length - 1);
+            }
+            return function (a,b) {
+                var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+                return result * sortOrder;
+            }
+        },
+
+        sortRepos: function(algorithm) {
+            if (algorithm == undefined) algorithm = 1;
+            //alert('sort: ' + algorithm);
+
+            if (algorithm == 1 /* Most active */) {
+                repos_results.sort(my.dynamicSort('-updated_at_parsed'));
+            } else if (algorithm == 2 /* */) {
+                //repos_results.sort(my.dynamicSort('-field'));
+            }
+
+            my.updateResults();
         },
 
         searchRegexpMatch: function(query) {
@@ -71,17 +79,17 @@
         },
 
         searchRepos: function(query) {
-            //alert('search: ' + query);
             // If it's an empty query string, set it to match everything.
             if (query == '') {
                 query = '.*';
             }
+            //alert('search: ' + query);
 
             // Reset results to the full set by cloning the array, then filter.
             repos_results = repos.slice(0);
             
             this.searchRegexpMatch.call(this, query);
-            this.updateResults.call(this);
+            this.sortRepos.call($('sort-select').val());
         },
 
         formatDate: function(date_string) {
@@ -98,6 +106,7 @@
             repo.created_at = this.formatDate.call(this, repo.created_at);
             repo.pushed_at = this.formatDate.call(this, repo.pushed_at);
             repo.updated_at = this.formatDate.call(this, repo.updated_at);
+            repo.updated_at_parsed = Math.round((new Date(repo.updated_at)).getTime() / 1000);
 
             // If it's a fork, show where it was forked from.
             /*
@@ -151,10 +160,11 @@
                         dataType: 'jsonp',
                         cache: true,
                         success: function(response) {
-                            my.processRepoArrayResponse(response.data, updateAfter);
-                        },
-                        failure: function () {
-                            my.repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                            if (response.data.length == undefined) {
+                              repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                            } else {
+                                my.processRepoArrayResponse(response.data, updateAfter);
+                            }
                         },
                         context: my
                     });
@@ -180,8 +190,14 @@
 
     my.init();
 
-    // When the user enters a search query, run the search function.
+    // When the user enters a search query, run the searchRepos() function.
     $('#search-query').change(function() {
         $.proxy(my.searchRepos, my, $('#search-query').val())();
+    });
+
+    // When the user selects a sort algorithm, run the sortRepos() function.
+    $('#sort-select').change(function() {
+        $('#sort-select').blur();
+        $.proxy(my.sortRepos, my, $('#sort-select').val())();
     });
 })();

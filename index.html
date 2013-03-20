@@ -269,30 +269,22 @@ content</a>
 <div class="tab-b t96">
 <div class="cbrt" id="cbrt">
 <div id="cbelm" class="cb">
-<div class="crt">
 
-<div class="cbl"><span id="w1-1"><span id="w1-2"><a rel="nofollow"
-id="surveylink" href="javascript:void(0)"></a></span></span></div>
-<div class="cbl dropdownmenu" an="Dash.SortBy.hover"><span class=
-"dropdown-lbl">Sort:&nbsp;</span>
+<div class="crt" style="height: 36px;">
 
-<ul class="sel">
-<li class="dropdown" aria-haspopup="true"><a href="#" class=
-"btn btn-s btn-ter dropdown-toggle" data-toggle="dropdown">Most Active</a></li>
-</ul>
-<ul style="visibility: hidden;" class="lyr txtRt dropdown-menu dropdown-menu-sm" id="menu3" role="menu">
-<!--
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=1" value="1">Activity: number of commits</a></li>
--->
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=2" value="2">Activity: number of forks</a></li>
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=3" value="3">Activity: number of stars</a></li>
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=5" value="5">Time: creation date</a></li>
-<!--
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=6" value="6">Tech: programming language</a></li>
-<li role="menuitem"><a href="http://ebay.github.com?_nkw={{query}}&amp;_sop=7" value="7">Legal: software license</a></li>
--->
-</ul>
+<!-- Begin sort selector. -->
+<span class="dropdown-lbl" style="height: 36px;">Sort:&nbsp;</span>
+<div class="styled-select" style="display: inline; height: 36px;">
+  <select id="sort-select" name="sort-select" title="Sort" onChange="this.blur(); return false;">
+    <option value="1" selected>Most Active</option>
+    <option value="2">Activity: number of forks</option>
+    <option value="3">Activity: number of stars</option>
+    <option value="4">Time: creation date</option>
+    <option value="5">Tech: programming language</option>
+  </select>
 </div>
+<!-- End sort selector. -->
+
 </div>
 
 <div class="clt"><span class="rcnt"><div id="total-repos"><!-- total --></div></span> <span class="active">repositories</span></div>
@@ -317,7 +309,7 @@ id="surveylink" href="javascript:void(0)"></a></span></span></div>
       <tr itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
         <td class="dtl">
           <div class="ittl">
-            <h4><a style="font-size: 110%;" href="http://github.com/{{owner.login}}/{{name}}" class="vip" title="" itemprop="name">{{name}}</a></h4>
+            <h4 style="padding-top: 0px; margin-top: 0px;"><a style="font-size: 110%;" href="http://github.com/{{owner.login}}/{{name}}" class="vip" title="" itemprop="name">{{name}}</a></h4>
             <p style="font-style: italic">{{description}}</p>
           </div>
           <div class="dyn dynS">
@@ -345,7 +337,11 @@ id="surveylink" href="javascript:void(0)"></a></span></span></div>
             </span>
           </div>
         </td>
-        <td><span>Last modified: <span>{{pushed_at}}</span></span></td>
+        <td style="vertical-align: bottom;">
+          <span>Last edit: <span>{{updated_at}}</span></span>
+          <br/>
+          <span>Last push: <span>{{pushed_at}}</span></span>
+        </td>
         <td class="prc">
           <div class="g-b bpo">
             <div class="bin">
