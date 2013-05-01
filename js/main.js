@@ -127,6 +127,7 @@
 
             // Set an owner avatar image for the repo, default to an eBay logo.
             var eBayOrgAvatarUrl = window.location.href.replace(/index\.html/, "ebay-logo-new-large-gravatar.png");
+            eBayOrgAvatarUrl = eBayOrgAvatarUrl.replace(/\/$/, "/ebay-logo-new-large-gravatar.png");
             repo.owner_avatar = repo.owner.avatar_url;
             repo.owner_avatar = repo.owner_avatar.replace(/d=.*/,
                 "s=400&d=" + encodeURIComponent(eBayOrgAvatarUrl));
