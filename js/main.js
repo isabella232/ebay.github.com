@@ -115,6 +115,8 @@
         },
 
         processRepoResponse: function(repo, updateAfter2) {
+            // Skip our own github pages web site repo(s).
+            if (repo.name.match(/.github.(com|io)$/i)) return;
 
             repo.created_at = this.formatDate.call(this, repo.created_at);
             repo.pushed_at = this.formatDate.call(this, repo.pushed_at);
@@ -124,10 +126,10 @@
             repo.pushed_at_utime = Math.round((new Date(repo.pushed_at)).getTime() / 1000);
 
             // Set an owner avatar image for the repo, default to an eBay logo.
-            var eBayOrgAvatarUrl = window.location.href.replace(/index\.html/, "ebay-logo-new-square.png");
+            var eBayOrgAvatarUrl = window.location.href.replace(/index\.html/, "ebay-logo-new-large-gravatar.png");
             repo.owner_avatar = repo.owner.avatar_url;
             repo.owner_avatar = repo.owner_avatar.replace(/d=.*/,
-                "d=" + encodeURIComponent(eBayOrgAvatarUrl));
+                "s=400&d=" + encodeURIComponent(eBayOrgAvatarUrl));
 
             // If it's a fork, show where it was forked from.
             /*
