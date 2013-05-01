@@ -306,9 +306,16 @@ content</a>
   <table listingid="360600020082i" class="li rsittlref shic" r="1" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
     <tbody class="lyr" itemprop="itemOffered" itemscope="" itemtype="http://schema.org/Product">
       <tr itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+        <td style="width: 6em; padding: 0">
+          <div class="l-shad lftd">
+            <a href='{{owner.html_url}}'>
+              <img src='{{owner_avatar}}' class="img" alt='{{owner.login}}'/>
+            </a>
+          </div>
+        </td>
         <td class="dtl">
           <div class="ittl">
-            <h4 style="padding-top: 0px; margin-top: 0px;"><a style="font-size: 110%;" href="http://github.com/{{owner.login}}/{{name}}" class="vip" title="" itemprop="name">{{name}}</a></h4>
+            <h4 style="padding-top: 0px; margin-top: 0px;"><a style="font-size: 110%;" href="http://github.com/{{owner.login}}/{{name}}" class="vip" title="" itemprop="name">{{owner.login}} / {{name}}</a></h4>
             <p style="font-style: italic">{{description}}</p>
           </div>
           <div class="dyn dynS">
@@ -317,10 +324,8 @@ content</a>
             </div>
             <div class="s1">Created:&nbsp;<span class="v">{{created_at}}</span>
             </div>
-            <!--
-            <div class="s1">Programming&nbsp;Language(s):&nbsp;<span class="v">{{programming_langs}}</span>
+            <div class="s1">Programming&nbsp;Language:&nbsp;<span class="v">{{language}}</span>
             </div>
-            -->
             <span>
               <span id="forks" class="forks num-box">
                 Forks:&nbsp;<span class="v">{{forks}}</span>,
@@ -336,10 +341,11 @@ content</a>
             </span>
           </div>
         </td>
-        <td style="vertical-align: bottom;">
-          <span>Last edit: <span>{{updated_at}}</span></span>
+        <td style="vertical-align: middle">
           <br/>
           <span>Last push: <span>{{pushed_at}}</span></span>
+          <br/>
+          <span>Last edit: <span>{{updated_at}}</span></span>
         </td>
         <td class="prc">
           <div class="g-b bpo">

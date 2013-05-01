@@ -9,7 +9,8 @@
         /* Don't show non-Marketplaces orgs without their permission..
         { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
         { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
-        { org: 'magento', repo: '*', ebayOrg: 'Magento' }
+        { org: 'magento', repo: '*', ebayOrg: 'Magento' },
+        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' }
         */
     ]};
 
@@ -56,9 +57,15 @@
             //alert('sort: ' + algorithm);
 
             if (algorithm == 1 /* Most active */) {
-                repos_results.sort(my.dynamicSort('-updated_at_parsed'));
-            } else if (algorithm == 2 /* */) {
-                //repos_results.sort(my.dynamicSort('-field'));
+                repos_results.sort(my.dynamicSort('-pushed_at_utime'));
+            } else if (algorithm == 2 /* Activity: Number of forks */) {
+                repos_results.sort(my.dynamicSort('-forks_count'));
+            } else if (algorithm == 3 /* Activity: number of stars */) {
+                repos_results.sort(my.dynamicSort('-watchers_count'));
+            } else if (algorithm == 4 /* Time: creation date */) {
+                repos_results.sort(my.dynamicSort('-created_at_utime'));
+            } else if (algorithm == 5 /* Tech: programming language */) {
+                repos_results.sort(my.dynamicSort('language'));
             }
 
             my.updateResults();
@@ -112,7 +119,15 @@
             repo.created_at = this.formatDate.call(this, repo.created_at);
             repo.pushed_at = this.formatDate.call(this, repo.pushed_at);
             repo.updated_at = this.formatDate.call(this, repo.updated_at);
-            repo.updated_at_parsed = Math.round((new Date(repo.updated_at)).getTime() / 1000);
+            repo.created_at_utime = Math.round((new Date(repo.created_at)).getTime() / 1000);
+            repo.updated_at_utime = Math.round((new Date(repo.updated_at)).getTime() / 1000);
+            repo.pushed_at_utime = Math.round((new Date(repo.pushed_at)).getTime() / 1000);
+
+            // Set an owner avatar image for the repo, default to an eBay logo.
+            var eBayOrgAvatarUrl = window.location.href.replace(/index\.html/, "ebay-logo-new-square.png");
+            repo.owner_avatar = repo.owner.avatar_url;
+            repo.owner_avatar = repo.owner_avatar.replace(/d=.*/,
+                "d=" + encodeURIComponent(eBayOrgAvatarUrl));
 
             // If it's a fork, show where it was forked from.
             /*
