@@ -5,13 +5,13 @@
         { org: 'ebaysf', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'ebayopensource', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'raptorjs', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' }
+        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' },
+        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
         /* Don't show non-Marketplaces orgs without their permission..
         { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
         { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
         { org: 'magento', repo: '*', ebayOrg: 'Magento' },
-        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' },
-        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
+        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' }
         */
     ]};
 
