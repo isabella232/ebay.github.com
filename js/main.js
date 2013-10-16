@@ -5,8 +5,7 @@
         { org: 'ebaysf', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'ebayopensource', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'raptorjs', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
+        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' }
         /* Don't show non-Marketplaces orgs without their permission..
         { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
         { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
@@ -22,7 +21,8 @@
         { org: 'timotheus', repo: 'ebaysdk-python', ebayOrg: 'eBay Marketplaces' },
         { org: 'ios-driver', repo: 'ios-driver', ebayOrg: 'eBay Marketplaces' },
         { org: 'ios-driver', repo: 'libimobile-java', ebayOrg: 'eBay Marketplaces' },
-        { org: 'senthilp', repo: 'spofcheck', ebayOrg: 'eBay Marketplaces' }
+        { org: 'senthilp', repo: 'spofcheck', ebayOrg: 'eBay Marketplaces' },
+        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
     ]};
 
     var github_api_url = 'https://api.github.com/';
