@@ -22,7 +22,7 @@
         { org: 'ios-driver', repo: 'ios-driver', ebayOrg: 'eBay Marketplaces' },
         { org: 'ios-driver', repo: 'libimobile-java', ebayOrg: 'eBay Marketplaces' },
         { org: 'senthilp', repo: 'spofcheck', ebayOrg: 'eBay Marketplaces' },
-        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
+        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'European Product Development' }
     ]};
 
     var github_api_url = 'https://api.github.com/';
