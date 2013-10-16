@@ -10,7 +10,8 @@
         { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
         { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
         { org: 'magento', repo: '*', ebayOrg: 'Magento' },
-        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' }
+        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' },
+        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'eBay Corporate Services GmbH' }
         */
     ]};
 
