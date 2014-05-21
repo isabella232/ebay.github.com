@@ -184,7 +184,7 @@
                 var repo = projects[i].repo;
                 if (repo == '*') {
                     $.ajax({
-                        url: github_api_url + 'orgs/' + org + '/repos',
+                        url: github_api_url + 'orgs/' + org + '/repos?access_token=f8da6e5dd69aa8693e273980455dabab0ea351dd&page=1&per_page=100',
                         dataType: 'jsonp',
                         cache: true,
                         success: function(response) {
@@ -198,7 +198,7 @@
                     });
                 } else {
                     $.ajax({
-                        url: github_api_url + 'repos/' + org + '/' + repo,
+                        url: github_api_url + 'repos/' + org + '/' + repo + "?access_token=f8da6e5dd69aa8693e273980455dabab0ea351dd&page=1&per_page=100",
                         dataType: 'jsonp',
                         cache: true,
                         success: function(response) {
