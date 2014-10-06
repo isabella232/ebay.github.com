@@ -5,7 +5,8 @@
         { org: 'ebaysf', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'ebayopensource', repo: '*', ebayOrg: 'eBay Marketplaces' },
         { org: 'raptorjs', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' }
+        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' },
+        { org: 'KylinOLAP', repo: '*', ebayOrg: 'eBay Marketplaces' }
         /* Don't show non-Marketplaces orgs without their permission..
         { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
         { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
