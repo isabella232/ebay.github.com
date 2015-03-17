@@ -19,6 +19,7 @@
     // hosted in another org on github, where this list contains each project's
     // github org and repo names.
     var ebay_contributed_projects = { projects: [
+        { org: 'appsforartists', repo: 'ambidex', ebayOrg: 'eBay Mobile Innovations' },
         { org: 'timotheus', repo: 'ebaysdk-python', ebayOrg: 'eBay Marketplaces' },
         { org: 'ios-driver', repo: 'ios-driver', ebayOrg: 'eBay Marketplaces' },
         { org: 'ios-driver', repo: 'libimobile-java', ebayOrg: 'eBay Marketplaces' },
