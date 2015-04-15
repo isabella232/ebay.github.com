@@ -250,6 +250,16 @@
                                 repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
                             } else {
                                 my.processRepoArrayResponse(
+                                    /*  specific_repos are repos that aren't hosted in one of the eBay GitHub
+                                     *  organizations.  Most likely, they are hosted on an employee's personal
+                                     *  account, but copyrighted by the eBay Software Foundation.
+                                     *
+                                     *  This filter makes sure that we don't end up with two listings for a 
+                                     *  single codebase (one for the master eBay org's copy and another for the
+                                     *  the maintainer's personal copy).  It gives precedence to the more
+                                     *  specific listing (e.g. the employee's).
+                                     */
+
                                     response.data.filter(
                                         function (repo) {
                                             return specific_repos.indexOf(repo.name) === -1
