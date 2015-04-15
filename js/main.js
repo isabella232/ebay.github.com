@@ -26,26 +26,6 @@
             "url":      "http://www.ebayenterprise.com/"
         },
         
-        "paypal": {
-            "name":     "PayPal",
-            "url":      "https://www.paypal.com/"
-        },
-        
-        "xcommerce": {
-            "name":     "X.commerce",
-            "url":      "https://www.paypal.com/"
-        },
-        
-        "magento": {
-            "name":     "Magento",
-            "url":      "https://magento.com/"
-        },
-        
-        "svpply": {
-            "name":     "Svpply",
-            "url":      "https://www.svpply.com/"
-        },
-        
         "selendroid": {
             "name":     "eBay European Product Development",
             "url":      "http://www.technology-ebay.de/"
