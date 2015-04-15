@@ -1,18 +1,17 @@
 (function () {
-    var base_url = 'file:///Users/jbrittain/vc/ebay.github.com';
     var ebay_org_projects = { projects: [
-        { org: 'ebay', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ebaysf', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ebayopensource', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'raptorjs', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ql-io', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'KylinOLAP', repo: '*', ebayOrg: 'eBay Marketplaces' },
-        { org: 'PulsarIO', repo: '*', ebayOrg: 'eBay Marketplaces' }
+        { org: 'ebay', repo: '*' },
+        { org: 'ebaysf', repo: '*' },
+        { org: 'ebayopensource', repo: '*' },
+        { org: 'raptorjs', repo: '*' },
+        { org: 'ql-io', repo: '*' },
+        { org: 'KylinOLAP', repo: '*' },
+        { org: 'PulsarIO', repo: '*' }
         /* Don't show non-Marketplaces orgs without their permission..
-        { org: 'paypal', repo: '*', ebayOrg: 'PayPal' },
-        { org: 'xcommerce', repo: '*', ebayOrg: 'X.commerce' },
-        { org: 'magento', repo: '*', ebayOrg: 'Magento' },
-        { org: 'svpply', repo: '*', ebayOrg: 'Svpply' }
+        { org: 'paypal', repo: '*' },
+        { org: 'xcommerce', repo: '*' },
+        { org: 'magento', repo: '*' },
+        { org: 'svpply', repo: '*' }
         */
     ]};
 
@@ -20,13 +19,53 @@
     // hosted in another org on github, where this list contains each project's
     // github org and repo names.
     var ebay_contributed_projects = { projects: [
-        { org: 'appsforartists', repo: 'ambidex', ebayOrg: 'eBay Mobile Innovations' },
-        { org: 'timotheus', repo: 'ebaysdk-python', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ios-driver', repo: 'ios-driver', ebayOrg: 'eBay Marketplaces' },
-        { org: 'ios-driver', repo: 'libimobile-java', ebayOrg: 'eBay Marketplaces' },
-        { org: 'senthilp', repo: 'spofcheck', ebayOrg: 'eBay Marketplaces' },
-        { org: 'selendroid', repo: 'selendroid', ebayOrg: 'European Product Development' }
+        { org: 'appsforartists', repo: 'ambidex' },
+        { org: 'appsforartists', repo: 'gravel' },
+        { org: 'appsforartists', repo: 'funx' },
+        { org: 'timotheus', repo: 'ebaysdk-python' },
+        { org: 'ios-driver', repo: 'ios-driver' },
+        { org: 'ios-driver', repo: 'libimobile-java' },
+        { org: 'senthilp', repo: 'spofcheck' },
+        { org: 'selendroid', repo: 'selendroid' }
     ]};
+
+    var ebay_team_by_github_org_name = {
+        "appsforartists": {
+            "name":     "eBay Mobile Innovations",
+            "url":      "http://www.ebayenterprise.com/"
+        },
+        
+        "paypal": {
+            "name":     "PayPal",
+            "url":      "https://www.paypal.com/"
+        },
+        
+        "xcommerce": {
+            "name":     "X.commerce",
+            "url":      "https://www.paypal.com/"
+        },
+        
+        "magento": {
+            "name":     "Magento",
+            "url":      "https://magento.com/"
+        },
+        
+        "svpply": {
+            "name":     "Svpply",
+            "url":      "https://www.svpply.com/"
+        },
+        
+        "selendroid": {
+            "name":     "eBay European Product Development",
+            "url":      "http://www.technology-ebay.de/"
+        },
+        
+        "default": {
+            "name":     "eBay Marketplaces",
+            "url":      "http://www.ebay.com/"
+        }
+    };
+
 
     var github_api_url = 'https://api.github.com/';
     var item_tmpl = $('#repo-item').html();
@@ -138,6 +177,9 @@
             repo.owner_avatar = repo.owner.avatar_url;
             repo.owner_avatar = repo.owner_avatar.replace(/d=.*/,
                 "s=400&d=" + encodeURIComponent(eBayOrgAvatarUrl));
+
+
+            repo.team_metadata = ebay_team_by_github_org_name[repo.owner.login] || ebay_team_by_github_org_name["default"];
 
             // If it's a fork, show where it was forked from.
             /*
