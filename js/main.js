@@ -1,24 +1,26 @@
 (function () {
-    var ebay_org_projects = { projects: [
-        { org: 'ebay', repo: '*' },
-        { org: 'ebaysf', repo: '*' },
-        { org: 'ebayopensource', repo: '*' },
-        { org: 'raptorjs', repo: '*' },
-        { org: 'ql-io', repo: '*' },
-        { org: 'KylinOLAP', repo: '*' },
-        { org: 'PulsarIO', repo: '*' }
+    var ALL_REPOS = "*";
+
+    var ebay_org_projects = [
+        { org: 'ebay', repo: ALL_REPOS },
+        { org: 'ebaysf', repo: ALL_REPOS },
+        { org: 'ebayopensource', repo: ALL_REPOS },
+        { org: 'raptorjs', repo: ALL_REPOS },
+        { org: 'ql-io', repo: ALL_REPOS },
+        { org: 'KylinOLAP', repo: ALL_REPOS },
+        { org: 'PulsarIO', repo: ALL_REPOS }
         /* Don't show non-Marketplaces orgs without their permission..
-        { org: 'paypal', repo: '*' },
-        { org: 'xcommerce', repo: '*' },
-        { org: 'magento', repo: '*' },
-        { org: 'svpply', repo: '*' }
+        { org: 'paypal', repo: ALL_REPOS },
+        { org: 'xcommerce', repo: ALL_REPOS },
+        { org: 'magento', repo: ALL_REPOS },
+        { org: 'svpply', repo: ALL_REPOS }
         */
-    ]};
+    ];
 
     // ebay_contributed_projects: a list of isolated individual OSS projects
     // hosted in another org on github, where this list contains each project's
     // github org and repo names.
-    var ebay_contributed_projects = { projects: [
+    var ebay_contributed_projects = [
         { org: 'appsforartists', repo: 'ambidex' },
         { org: 'appsforartists', repo: 'gravel' },
         { org: 'appsforartists', repo: 'funx' },
@@ -27,7 +29,7 @@
         { org: 'ios-driver', repo: 'libimobile-java' },
         { org: 'senthilp', repo: 'spofcheck' },
         { org: 'selendroid', repo: 'selendroid' }
-    ]};
+    ];
 
     var ebay_team_by_github_org_name = {
         "appsforartists": {
@@ -67,6 +69,18 @@
     };
 
 
+    var specific_repos = ebay_contributed_projects.concat(
+        ebay_contributed_projects
+    ).map(
+        function (metadata) {
+            return metadata.repo
+        }
+    ).filter(
+        function (repo) {
+            return repo !== ALL_REPOS
+        }
+    );
+    
     var github_api_url = 'https://api.github.com/';
     var item_tmpl = $('#repo-item').html();
     var total_repos_div = $('#total-repos');
@@ -222,21 +236,27 @@
             }
         },
 
-        loadRepos: function(data, updateAfter) {
-            var projects = data.projects;
+        loadRepos: function(projects, updateAfter) {
             for (var i = 0; i < projects.length; i++) {
                 var org = projects[i].org;
                 var repo = projects[i].repo;
-                if (repo == '*') {
+                if (repo === ALL_REPOS) {
                     $.ajax({
                         url: github_api_url + 'orgs/' + org + '/repos?access_token=f8da6e5dd69aa8693e273980455dabab0ea351dd&page=1&per_page=100',
                         dataType: 'jsonp',
                         cache: true,
                         success: function(response) {
                             if (response.data.length == undefined) {
-                              repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                                repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
                             } else {
-                                my.processRepoArrayResponse(response.data, updateAfter);
+                                my.processRepoArrayResponse(
+                                    response.data.filter(
+                                        function (repo) {
+                                            return specific_repos.indexOf(repo.name) === -1
+                                        }
+                                    ), 
+                                    updateAfter
+                                );
                             }
                         },
                         context: my
@@ -248,7 +268,7 @@
                         cache: true,
                         success: function(response) {
                             if (response.data.message != undefined) {
-                              repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
+                                repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
                             } else {
                                 my.processRepoResponse(response.data, updateAfter);
                             }
