@@ -1,60 +1,29 @@
 (function () {
     var ALL_REPOS = "*";
 
-    var ebay_org_projects = [
-        { org: 'ebay', repo: ALL_REPOS },
-        { org: 'ebaysf', repo: ALL_REPOS },
-        { org: 'ebayopensource', repo: ALL_REPOS },
-        { org: 'raptorjs', repo: ALL_REPOS },
-        { org: 'ql-io', repo: ALL_REPOS },
-        { org: 'KylinOLAP', repo: ALL_REPOS },
-        { org: 'PulsarIO', repo: ALL_REPOS }
-        /* Don't show non-Marketplaces orgs without their permission..
-        { org: 'paypal', repo: ALL_REPOS },
-        { org: 'xcommerce', repo: ALL_REPOS },
-        { org: 'magento', repo: ALL_REPOS },
-        { org: 'svpply', repo: ALL_REPOS }
-        */
-    ];
+    var ebay_projects = [
+        { org: 'ebay',              repo: ALL_REPOS },
+        { org: 'ebaysf',            repo: ALL_REPOS },
+        { org: 'ebayopensource',    repo: ALL_REPOS },
+        { org: 'raptorjs',          repo: ALL_REPOS },
+        { org: 'ql-io',             repo: ALL_REPOS },
+        { org: 'KylinOLAP',         repo: ALL_REPOS },
+        { org: 'PulsarIO',          repo: ALL_REPOS },
 
-    // ebay_contributed_projects: a list of isolated individual OSS projects
-    // hosted in another org on github, where this list contains each project's
-    // github org and repo names.
-    var ebay_contributed_projects = [
-        { org: 'appsforartists', repo: 'ambidex' },
-        { org: 'appsforartists', repo: 'gravel' },
-        { org: 'appsforartists', repo: 'funx' },
-        { org: 'timotheus', repo: 'ebaysdk-python' },
-        { org: 'ios-driver', repo: 'ios-driver' },
-        { org: 'ios-driver', repo: 'libimobile-java' },
-        { org: 'senthilp', repo: 'spofcheck' },
-        { org: 'selendroid', repo: 'selendroid' }
+        { org: 'appsforartists',    repo: 'ambidex' },
+        { org: 'appsforartists',    repo: 'gravel' },
+        { org: 'appsforartists',    repo: 'funx' },
+        { org: 'timotheus',         repo: 'ebaysdk-python' },
+        { org: 'ios-driver',        repo: 'ios-driver' },
+        { org: 'ios-driver',        repo: 'libimobile-java' },
+        { org: 'senthilp',          repo: 'spofcheck' },
+        { org: 'selendroid',        repo: 'selendroid' }
     ];
 
     var ebay_team_by_github_org_name = {
         "appsforartists": {
             "name":     "eBay Mobile Innovations",
             "url":      "http://www.ebayenterprise.com/"
-        },
-        
-        "paypal": {
-            "name":     "PayPal",
-            "url":      "https://www.paypal.com/"
-        },
-        
-        "xcommerce": {
-            "name":     "X.commerce",
-            "url":      "https://www.paypal.com/"
-        },
-        
-        "magento": {
-            "name":     "Magento",
-            "url":      "https://magento.com/"
-        },
-        
-        "svpply": {
-            "name":     "Svpply",
-            "url":      "https://www.svpply.com/"
         },
         
         "selendroid": {
@@ -69,9 +38,7 @@
     };
 
 
-    var specific_repos = ebay_contributed_projects.concat(
-        ebay_contributed_projects
-    ).map(
+    var specific_repos = ebay_projects.map(
         function (metadata) {
             return metadata.repo
         }
@@ -250,6 +217,16 @@
                                 repos_div.html("Github limits your API requests to 60 per hour, and you've exceeded that for this hour.  Try again in a bit..");
                             } else {
                                 my.processRepoArrayResponse(
+                                    /*  specific_repos are repos that aren't hosted in one of the eBay GitHub
+                                     *  organizations.  Most likely, they are hosted on an employee's personal
+                                     *  account, but copyrighted by the eBay Software Foundation.
+                                     *
+                                     *  This filter makes sure that we don't end up with two listings for a 
+                                     *  single codebase (one for the master eBay org's copy and another for the
+                                     *  the maintainer's personal copy).  It gives precedence to the more
+                                     *  specific listing (e.g. the employee's).
+                                     */
+
                                     response.data.filter(
                                         function (repo) {
                                             return specific_repos.indexOf(repo.name) === -1
@@ -280,8 +257,7 @@
         },
 
         init: function() {
-            this.loadRepos.call(this, ebay_contributed_projects, false);
-            this.loadRepos.call(this, ebay_org_projects, true);
+            this.loadRepos.call(this, ebay_projects, true);
         }
     };
 
