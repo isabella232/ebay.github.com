@@ -1351,7 +1351,19 @@ body.is-loading #banner .contacts {
 }
 
 .textindent {
+    margin-bottom: 1em;
     margin-left: 50px;
+    position: relative;
+}
+
+.textindent::before {
+    content: "-";
+    margin-left: -1em;
+    position: absolute;
+}
+
+p:not(.textindent) + p.textindent {
+    margin-top: -1em;
 }
 
 .copyright {
