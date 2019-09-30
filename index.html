@@ -18,6 +18,51 @@
   <link rel="stylesheet" href="assets/fonts/MarketSans-Regular-WebS.css" />
   <link rel="stylesheet" href="assets/fonts/MarketSans-SemiBold-WebS.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <script>
+    var makeRequest = function (url, method) {
+      var request = new XMLHttpRequest();
+      return new Promise(function (resolve, reject) {
+        request.onreadystatechange = () => {
+          if (request.readyState !== 4) return;
+          if (request.status >= 200 && request.status < 300) {
+            resolve(request);
+          }
+          else {
+            reject({ status: request.status, statusText: request.statusText });
+          }
+        };
+        request.open(method || 'GET' , url, true);
+        request.send();
+      });
+    };
+
+    makeRequest('https://api.github.com/users/eBay/repos?sort=updated')
+      .then(function (data) {
+        const repos = JSON.parse(data.responseText);
+        loadRepoTemplates(repos);
+      })
+      .catch(function (error) {
+        console.log('Something went wrong', error);
+      });
+
+    function loadRepoTemplates(repos) {
+      let repoMarkup = '';
+      let repoCount = 0;
+      for (let index = 0; index < 14; index++) {
+        const repo = repos[index];
+        console.log(repo);
+        repoMarkup += `
+        <article class="col-md-6">
+          <h3 class="major"><a href="${repo.homepage}" target="_blank" rel="noopener" class="learn-more">${repo.name}</a></h3>
+          <p>${repo.description}</p>
+          <p><a href="${repo.homepage}" target="_blank" rel="noopener" class="learn-more">Github</a> ⭐️ ${repo.stargazers_count}</p>
+        </article>
+        `;
+      }
+
+      document.getElementById('repo-list').innerHTML = repoMarkup;
+    }
+  </script>
 </head>
 
 <body>
@@ -47,7 +92,7 @@
     </section>
 
     <section id="wrapper">
-      <section id="one" class="wrapper spotlight style1">
+      <!-- <section id="one" class="wrapper spotlight style1">
         <div class="inner">
           <a href="https://github.com/eBay/fabio" class="image" target="_blank" rel="noopener"><img src="images/fabio.png" alt="" /></a>
           <div class="content">
@@ -79,14 +124,13 @@
             <a href="http://eagle.apache.org/" target="_blank" rel="noopener" class="learn-more">Learn more</a>
           </div>
         </div>
-      </section>
+      </section> -->
 
       <section id="four" class="wrapper alt style4">
         <div class="inner">
-          <h2 class="major">More Projects</h2>
-          <p>Some additional projects are found below. You can find a full list of our projects on <a href="https://github.com/ebay">GitHub</a>. Open source is supported by the very top levels of the company, so expect to see many more projects from eBay!</p>
-          <section class="features">
-            <article class="col-md-6">
+          <h2>Recently Updated Projects</h2>
+          <section class="features" id="repo-list">
+            <!-- <article class="col-md-6">
               <a href="http://gopulsar.io/" class="image" target="_blank" rel="noopener"><img src="images/pulsar.jpg" alt="" /></a>
               <h3 class="major">Pulsar</h3>
               <p>Pulsar is an open-source, real-time analytics platform that includes stream processing, metrics store, and reporting frameworks. Pulsar can be used to collect, process user and business events in real time, provide key insights
@@ -119,7 +163,7 @@
               <h3 class="major">Gzynga</h3>
               <p>Seekable and Splittable GZip. This project is aim to provide Seekable (random search within gzip file) and Splittable (can divide gzip file into multiple chunks) capability for gzip compressed file.</p>
               <a href="https://github.com/eBay/GZinga" target="_blank" rel="noopener" class="learn-more">Learn more</a>
-            </article>
+            </article> -->
           </section>
         </div>
       </section>
