@@ -19,9 +19,10 @@
   <link rel="stylesheet" href="assets/fonts/MarketSans-SemiBold-WebS.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <script>
-    var makeRequest = function (url, method) {
+    function makeRequest(url, method) {
       var request = new XMLHttpRequest();
-      return new Promise(function (resolve, reject) {
+
+      return new Promise((resolve, reject) => {
         request.onreadystatechange = () => {
           if (request.readyState !== 4) return;
           if (request.status >= 200 && request.status < 300) {
@@ -34,34 +35,28 @@
         request.open(method || 'GET' , url, true);
         request.send();
       });
-    };
-
-    makeRequest('https://api.github.com/users/eBay/repos?sort=updated')
-      .then(function (data) {
-        const repos = JSON.parse(data.responseText);
-        loadRepoTemplates(repos);
-      })
-      .catch(function (error) {
-        console.log('Something went wrong', error);
-      });
+    }
 
     function loadRepoTemplates(repos) {
       let repoMarkup = '';
-      let repoCount = 0;
+
       for (let index = 0; index < 14; index++) {
         const repo = repos[index];
-        console.log(repo);
         repoMarkup += `
         <article class="col-md-6">
-          <h3 class="major"><a href="${repo.homepage}" target="_blank" rel="noopener" class="learn-more">${repo.name}</a></h3>
+          <h3 class="major"><a href="${repo.homepage || repo.html_url}" target="_blank" rel="noopener" class="learn-more">${repo.name}</a></h3>
           <p>${repo.description}</p>
-          <p><a href="${repo.homepage}" target="_blank" rel="noopener" class="learn-more">Github</a> ⭐️ ${repo.stargazers_count}</p>
+          <p><a href="${repo.homepage || repo.html_url}" target="_blank" rel="noopener" class="learn-more">${repo.homepage ? 'Learn more' : 'Github'}</a> – ⭐️ ${repo.stargazers_count}</p>
         </article>
         `;
       }
 
       document.getElementById('repo-list').innerHTML = repoMarkup;
     }
+
+    makeRequest('https://api.github.com/users/eBay/repos?sort=updated')
+      .then(data => loadRepoTemplates(JSON.parse(data.responseText)))
+      .catch(error => console.log('Something went wrong', error));
   </script>
 </head>
 
